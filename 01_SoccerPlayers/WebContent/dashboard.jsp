@@ -12,6 +12,12 @@
 <body>
 	<h1>Welcome</h1>
 	<h2><%=request.getAttribute("userName")%></h2>
-	<%-- <h2><%=request.getAttribute("password")%></h2> --%>
+	<br/>
+	<h2><bean:message key="index.title"/></h2> 
+	<img src="pics/soccer_logo.png" alt="Logo" />
+	<br />
+	<br />
+	<bean:message key="general.copyright"/><br/>
+	<% out.println(request.getHeader("User-Agent")); %>
 </body>
 </html>

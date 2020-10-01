@@ -11,7 +11,8 @@
 		<action path="/welcomeHere"
 			type="com.soccerPlayers.Action.UserLoginAction" name="userBeanForm"
 			scope="request">
-			<forward name="success" path="/hello.jsp" />
+			<forward name="success" path="/dashboard.jsp" />
 		</action>
 	</action-mappings>
+	 <message-resources parameter="MessageResources"/>
 </struts-config>
