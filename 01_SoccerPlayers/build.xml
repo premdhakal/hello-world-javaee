@@ -1,0 +1,53 @@
+<?xml version="1.0" ?> 
+<project name="SoccerPlayers" default="deploywar">
+ 
+	<!-- Step 2. First Clean the Project/Folders -->
+	<target name="clean" description="Trigerring Clean">
+	   <delete dir="dist" />
+		<delete dir="build/classes/" />
+	</target>
+	
+	<!-- Step 3. Next, Create the Project/Folders needed -->
+	<echo>====Create Folders========</echo> 
+	<target name="init" description="Trigerring Init">
+		<sleep seconds="1"/>
+	    	<mkdir dir="build"/>
+	        <mkdir dir="build/classes"/>
+	        <mkdir dir="dist" />
+		<sleep seconds="1"/>
+	  </target>
+	
+	<!-- COMPILE -->
+	  <path id="compile.classpath" description="compile.classpath">
+	        <fileset dir="WebContent/WEB-INF/lib">
+	            <include name="*.jar"/>
+	        </fileset>
+	    </path>
+	<!-- Step 4. Next, Compile the Project/Folders --> 
+	    <target name="compile" depends="init" description="COMPILE">
+	    	<echo>====Compile========</echo>
+	        <javac destdir="build/classes" debug="true" srcdir="src" includeantruntime="false">
+	            <classpath refid="compile.classpath"/>
+	        </javac>
+	    </target>
+	
+	<!-- PACKAGE -->
+    <target name="war" depends="compile" description="PACKAGE">
+    	 <echo>=== PACKAGE into .war ===</echo>
+    	 <!-- copy the config files -->
+    	 <!-- the ant war task. with all resources in place, create the war file -->
+        <war destfile="dist/SoccerPlayers.war" webxml="WebContent/WEB-INF/web.xml">
+            <fileset dir="WebContent"/>
+            <lib dir="WebContent/WEB-INF/lib"/>
+            <classes dir="build/classes"/>
+        </war>
+    </target>
+
+	<!-- INSTALL -->
+	<property name="package.file" value="C:/Users/premd/git/soccerplayers/01_SoccerPlayers/dist/SoccerPlayers.war" />
+	<property name="webapp.dir" value="C:/Program Files/Apache Software Foundation/Tomcat 7.0/webapps" />
+	<target name="deploywar" depends="war">
+	      <echo>=== PACKAGING WAR to tomcat===</echo>
+	      <copy file="${package.file}" tofile="${webapp.dir}/SoccerPlayers.war" overwrite="true" />
+	 </target>
+</project>
