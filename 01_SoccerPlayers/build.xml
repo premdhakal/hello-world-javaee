@@ -9,7 +9,7 @@
 	
 	<!-- Step 3. Next, Create the Project/Folders needed -->
 	<echo>====Create Folders========</echo> 
-	<target name="init" description="Trigerring Init">
+	<target name="init" depends="clean" description="Trigerring Init">
 		<sleep seconds="1"/>
 	    	<mkdir dir="build"/>
 	        <mkdir dir="build/classes"/>
@@ -18,10 +18,12 @@
 	  </target>
 	
 	<!-- COMPILE -->
+	<echo>====Need to import lib for tomcat servlet and web libs========</echo> 
 	  <path id="compile.classpath" description="compile.classpath">
 	        <fileset dir="WebContent/WEB-INF/lib">
 	            <include name="*.jar"/>
 	        </fileset>
+	  		<fileset dir="C:\Program Files\Apache Software Foundation\Tomcat 7.0\lib" includes="*.jar" />
 	    </path>
 	<!-- Step 4. Next, Compile the Project/Folders --> 
 	    <target name="compile" depends="init" description="COMPILE">
