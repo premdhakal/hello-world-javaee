@@ -23,7 +23,8 @@
 	        <fileset dir="WebContent/WEB-INF/lib">
 	            <include name="*.jar"/>
 	        </fileset>
-	  		<fileset dir="C:\Program Files\Apache Software Foundation\Tomcat 7.0\lib" includes="*.jar" />
+	  		<!--<fileset dir="C:\Program Files\Apache Software Foundation\Tomcat 7.0\lib" includes="*.jar" />-->
+		  	<fileset dir="/usr/share/tomcat9/lib" includes="*.jar" />
 	    </path>
 	<!-- Step 4. Next, Compile the Project/Folders --> 
 	    <target name="compile" depends="init" description="COMPILE">
@@ -46,8 +47,10 @@
     </target>
 
 	<!-- INSTALL -->
-	<property name="package.file" value="C:/Users/premd/git/soccerplayers/01_SoccerPlayers/dist/SoccerPlayers.war" />
-	<property name="webapp.dir" value="C:/Program Files/Apache Software Foundation/Tomcat 7.0/webapps" />
+	<!--<property name="package.file" value="C:/Users/premd/git/soccerplayers/01_SoccerPlayers/dist/SoccerPlayers.war" />->
+	<!--<property name="webapp.dir" value="C:/Program Files/Apache Software Foundation/Tomcat 7.0/webapps" />-->
+	<property name="package.file" value="/var/jenkins_home/workspace/Soccerplayers_ant/01_SoccerPlayers/dist/SoccerPlayers.war" />
+	<property name="webapp.dir" value="/var/lib/tomcat9/webapps" />
 	<target name="deploywar" depends="war">
 	      <echo>=== PACKAGING WAR to tomcat===</echo>
 	      <copy file="${package.file}" tofile="${webapp.dir}/SoccerPlayers.war" overwrite="true" />
